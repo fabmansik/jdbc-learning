@@ -19,6 +19,7 @@ public class JdbcService {
     @Transactional
     public void getAll() {
         List<User> allUsers = userCustomJdbcRepository.getAllUsers();
+        userCustomJdbcRepository.multiUpdate();
         System.out.println(allUsers);
 //        jdbcTemplate.execute("CREATE TABLE USERS (id integer PRIMARY KEY , name VARCHAR(60), surname VARCHAR(60), email VARCHAR(120))");
 //        System.out.println("table is created!");

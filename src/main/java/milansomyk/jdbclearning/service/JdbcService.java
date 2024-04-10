@@ -3,10 +3,10 @@ package milansomyk.jdbclearning.service;
 import jakarta.annotation.PostConstruct;
 import milansomyk.jdbclearning.User;
 import milansomyk.jdbclearning.repository.UserCustomJdbcRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class JdbcService {
@@ -18,7 +18,7 @@ public class JdbcService {
     @PostConstruct
     @Transactional
     public void getAll() {
-        User allUsers = userCustomJdbcRepository.getAllUsers();
+        List<User> allUsers = userCustomJdbcRepository.getAllUsers();
         System.out.println(allUsers);
 //        jdbcTemplate.execute("CREATE TABLE USERS (id integer PRIMARY KEY , name VARCHAR(60), surname VARCHAR(60), email VARCHAR(120))");
 //        System.out.println("table is created!");

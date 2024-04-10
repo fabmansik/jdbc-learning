@@ -2,8 +2,11 @@ package milansomyk.jdbclearning.repository;
 
 import milansomyk.jdbclearning.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 public class UserCustomJdbcRepository {
@@ -12,8 +15,8 @@ public class UserCustomJdbcRepository {
     public UserCustomJdbcRepository(JdbcTemplate jdbcTemplate) {
         this.jdbcTemplate = jdbcTemplate;
     }
-    public User getAllUsers(){
-        String GET_QUERY = "SELECT * FROM USERS WHERE id = 1";
-        return jdbcTemplate.queryForObject(GET_QUERY, null, (rs,rowNum)-> new User(rs.getLong("id"),rs.getString("name"),rs.getString("surname"),rs.getString("email")));
+    public List<User> getAllUsers(){
+        String GET_QUERY = "SELECT * FROM USERS";
+        return jdbcTemplate.query(GET_QUERY, new BeanPropertyRowMapper<>(User.class));
     }
 }
